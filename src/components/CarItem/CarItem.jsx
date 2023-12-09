@@ -1,54 +1,118 @@
-// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-// import { ModalOverlay } from '../Modal/Modal';
+import {
+  CarItemStyled,
+  ImageWrapper,
+  TextHolder,
+  FavoriteButton,
+} from './CarItem.styled';
 
-// import {
-//   ImageGalleryItem,
-//   ImageGalleryItemImage,
-// } from './ImageGalleryItem.styled';
+import { getFavorites } from '../../redux/selectors';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/cars/favoriteSlice';
 
-// export default function CarItem({ imgLarge, tags, imgUrl }) {
-//   const [showModal, setShowModal] = useState(false);
+import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
-//   const toogleModal = () => {
-//     setShowModal(showModal => !showModal);
-//   };
+export const CarItem = ({ car }) => {
+  const {
+    address,
+    rentalCompany,
+    id,
+    img,
+    description,
+    functionalities,
+    mileage,
+    model,
+    type,
+    rentalPrice,
+    year,
+    make,
+  } = car;
 
-//   return (
-//     <ImageGalleryItem className="gallery-item">
-//       <ImageGalleryItemImage
-//         onClick={toogleModal}
-//         src={imgUrl}
-//         alt={tags}
-//         width="240"
-//         loading="lazy"
-//       />
-//       {showModal && (
-//         <ModalOverlay
-//           largeUrl={imgLarge}
-//           tags={tags}
-//           isOpen={showModal}
-//           onClick={toogleModal}
-//         />
-//       )}
-//     </ImageGalleryItem>
-//   );
-// }
+  const dispatch = useDispatch();
+  const favorites = useSelector(getFavorites);
+  const [isFavorite, setIsFavorite] = useState(false);
+  //   const isFavorite = favorites.some(item => item.id === car.id);
 
-// <CarsItemStyled key={movie.id}>
-//   <ImageHolder>
-//     <img
-//       src={
-//         movie.poster_path
-//           ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-//           : 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'
-//       }
-//       alt={movie.title}
-//     />
-//   </ImageHolder>
-//   <TextHolder>
-//     <Title>{movie.title || movie.original_title}</Title>
-//     <Description></Description>
-//   </TextHolder>
-//   <Button>Learn more</Button>
-// </CarsItemStyled>;
+  const addressParts = address.split(', ');
+  const classCar = rentalCompany.split(' ');
+
+  useEffect(() => {
+    if (favorites !== null) {
+      const carIsInFavList = favorites.some(advert => advert.id === id);
+
+      setIsFavorite(carIsInFavList);
+    }
+  }, [favorites, id]);
+
+  const handleToggleFavorite = () => {
+    if (!isFavorite) {
+      dispatch(addToFavorites(car));
+      setIsFavorite(true);
+    } else {
+      dispatch(removeFromFavorites(id));
+      setIsFavorite(false);
+    }
+  };
+
+  return (
+    <CarItemStyled>
+      <ImageWrapper>
+        <img
+          src={
+            img
+              ? img
+              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWggGWNvpgV9vuCU59n0yoAuZtQTxKGSXH2w&usqp=CAU'
+          }
+          alt={description}
+          loading="lazy"
+        />
+        <FavoriteButton
+          type="button"
+          onClick={handleToggleFavorite}
+          className="cursor-pointer"
+          $isFavorite={isFavorite}
+        >
+          {isFavorite ? <FaHeart /> : <FaRegHeart />}
+        </FavoriteButton>
+      </ImageWrapper>
+      <TextHolder>
+        <div>
+          <p>
+            <span>{make}</span>
+            <span>{model}</span>
+            <span> {year}</span>
+          </p>
+          <p>{rentalPrice}</p>
+        </div>
+
+        <div>
+          <ul>
+            <li>{addressParts[1]}</li>
+            <li>{addressParts[2]}</li>
+            <li>{rentalCompany}</li>
+            <li>{classCar[0]}</li>
+            <li>{type}</li>
+            <li>{model}</li>
+            <li>{mileage}</li>
+            <li>{functionalities[0]}</li>
+          </ul>
+        </div>
+      </TextHolder>
+
+      <button
+      //   onClick={handleModalOpen}
+      >
+        Learn more
+      </button>
+      {/* <Modal
+        isOpenModalProp={isOpenModal}
+        handleModalCloseProp={handleModalClose}
+        carDataProp={carData}
+      /> */}
+    </CarItemStyled>
+  );
+};

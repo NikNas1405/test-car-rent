@@ -1,4 +1,4 @@
-import { Container, Body, Base, LongFazes, Title } from './Loader.styled.js';
+import { Container, Body, Base, Title } from './Loader.styled.js';
 
 const Loader = () => {
   return (
@@ -11,12 +11,7 @@ const Loader = () => {
           />
         </Base>
       </Body>
-      <LongFazes>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </LongFazes>
+
       <Title>Loading...</Title>
     </Container>
   );

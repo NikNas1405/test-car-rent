@@ -2,12 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Back = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
-  padding: 200px 20px 20px;
+  height: 100%;
   background-image: linear-gradient(
       180deg,
       rgba(25, 46, 52, 0.61) 5.73%,
@@ -18,7 +14,7 @@ export const Back = styled.div`
   background-size: cover;
 
   @media (max-width: 368px) {
-    padding-top: 400px;
+    padding-top: 600px;
   }
 
   @media (max-width: 728px) {
