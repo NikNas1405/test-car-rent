@@ -15,6 +15,7 @@ import {
 } from '../../redux/cars/carsSlice';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa6';
+import { formatNumber } from '../../utils/formatNumber';
 
 export const CarItem = ({ car }) => {
   const {
@@ -37,10 +38,10 @@ export const CarItem = ({ car }) => {
 
   console.log(favorites);
   const [isFavorite, setIsFavorite] = useState(false);
-  //   const isFavorite = favorites.some(item => item.id === car.id);
 
   const addressParts = address?.split(', ');
   const classCar = rentalCompany?.split(' ');
+  const uiMileage = formatNumber(mileage);
 
   useEffect(() => {
     if (favorites !== null) {
@@ -99,7 +100,7 @@ export const CarItem = ({ car }) => {
             <li>{classCar[0]}</li>
             <li>{type}</li>
             <li>{model}</li>
-            <li>{mileage}</li>
+            <li>{uiMileage}</li>
             <li>{functionalities[0]}</li>
           </ul>
         </div>

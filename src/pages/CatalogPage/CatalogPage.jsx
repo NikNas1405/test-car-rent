@@ -4,7 +4,6 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
-
 import { getIsLoading, getError, getCars } from '../../redux/selectors';
 
 const CatalogPage = () => {

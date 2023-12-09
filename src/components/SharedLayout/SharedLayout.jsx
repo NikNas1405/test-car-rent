@@ -6,6 +6,7 @@ import {
   NavLinkStyled,
   Container,
   HeaderContainer,
+  Wrapper,
 } from './SharedLayout.styled';
 
 import logo from '../../utils/images/logo.jpg';
@@ -13,7 +14,7 @@ import Loader from '../Loader/Loader';
 
 export const SharedLayout = () => {
   return (
-    <div>
+    <Wrapper>
       <Header>
         <HeaderContainer>
           <Link to="/">
@@ -31,6 +32,6 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </Container>
-    </div>
+    </Wrapper>
   );
 };

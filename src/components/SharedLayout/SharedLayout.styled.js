@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Header = styled.header`
   background-color: black;
   position: fixed;
@@ -12,15 +19,24 @@ export const Header = styled.header`
 
 export const HeaderContainer = styled.div`
   max-width: 1140px;
+  max-height: 450px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 8px 16px;
 
-  @media (min-width: 369px) {
-    padding: 12px 16px;
+  @media (max-width: 369px) {
+    height: 170px;
+  }
+
+  @media ((min-width: 321px) and (max-width: 767px)) {
+    height: 130px;
+  }
+  @media (min-width: 768px) {
+    height: 90px;
+    justify-content: space-between;
   }
 
   > nav {
@@ -65,13 +81,20 @@ export const NavLinkStyled = styled(NavLink)`
 
 export const Container = styled.div`
   max-width: 1144px;
-  margin: 80px auto 0;
+  margin: 450px auto 0;
   padding: 16px;
   background-color: #ffffff;
 
   border: 2px solid red;
 
+  @media (max-width: 369px) {
+    margin: 170px;
+  }
+
+  @media ((min-width: 321px) and (max-width: 767px)) {
+    margin: 130px;
+  }
   @media (min-width: 768px) {
-    padding: 20px;
+    margin: 90px;
   }
 `;
