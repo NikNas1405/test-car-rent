@@ -15,7 +15,6 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['favorites'],
 };
 
 export const persistedRootReducer = persistReducer(persistConfig, rootReducer);
@@ -28,6 +27,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+
   devTools: process.env.NODE_ENV === 'development',
 });
 

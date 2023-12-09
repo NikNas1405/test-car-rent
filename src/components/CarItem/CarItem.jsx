@@ -12,24 +12,24 @@ import { getFavorites } from '../../redux/selectors';
 import {
   addToFavorites,
   removeFromFavorites,
-} from '../../redux/cars/favoriteSlice';
+} from '../../redux/cars/carsSlice';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
 export const CarItem = ({ car }) => {
   const {
-    address,
-    rentalCompany,
-    id,
-    img,
-    description,
-    functionalities,
-    mileage,
+    make,
+    year,
     model,
     type,
+    img,
+    functionalities,
+    rentalCompany,
+    address,
     rentalPrice,
-    year,
-    make,
+    mileage,
+    id,
+    description,
   } = car;
 
   const dispatch = useDispatch();
@@ -37,8 +37,8 @@ export const CarItem = ({ car }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   //   const isFavorite = favorites.some(item => item.id === car.id);
 
-  const addressParts = address.split(', ');
-  const classCar = rentalCompany.split(' ');
+  const addressParts = address?.split(', ');
+  const classCar = rentalCompany?.split(' ');
 
   useEffect(() => {
     if (favorites !== null) {
@@ -91,14 +91,14 @@ export const CarItem = ({ car }) => {
 
         <div>
           <ul>
-            <li>{addressParts[1]}</li>
-            <li>{addressParts[2]}</li>
+            {/* <li>{addressParts[1]}</li>
+            <li>{addressParts[2]}</li> */}
             <li>{rentalCompany}</li>
-            <li>{classCar[0]}</li>
+            {/* <li>{classCar[0]}</li> */}
             <li>{type}</li>
             <li>{model}</li>
             <li>{mileage}</li>
-            <li>{functionalities[0]}</li>
+            {/* <li>{functionalities[0]}</li> */}
           </ul>
         </div>
       </TextHolder>

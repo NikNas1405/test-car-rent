@@ -8,39 +8,49 @@ import {
   getIsLoading,
   getError,
   getTotalCarsInArr,
+  getCurrentPage,
 } from '../../redux/selectors';
 
 import { fetchAllCars } from '../../utils/getApi';
 import { useSearchParams } from 'react-router-dom';
 import { CarItem } from '../CarItem/CarItem';
+import { nanoid } from '@reduxjs/toolkit';
 
 export const CarList = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+
+  const currentPage = useSelector(getCurrentPage);
+
   const adverts = useSelector(getCars);
   const totalCarsInArray = useSelector(getTotalCarsInArr);
   const error = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
+
   const initialized = useRef(false);
 
   useEffect(() => {
-    if (!initialized.current || page !== 1) {
-      dispatch(fetchAllCars(page));
+    if (!initialized.current || currentPage !== 1) {
+      // Якщо ще не було запиту на бекенд для цієї сторінки
+
+      dispatch(fetchAllCars(currentPage));
       initialized.current = true;
     }
-  }, [dispatch, page, setSearchParams]);
+  }, [dispatch, currentPage]);
 
   const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
-    setSearchParams({ page: page + 1 });
+    if (currentPage < 3) {
+      dispatch(setPage(currentPage + 1));
+    }
   };
 
   return (
     <>
       <CarListStyled>
         {adverts.map(advert => {
-          return <CarItem car={advert} key={advert.id} />;
+          const { id } = advert;
+          return <CarItem car={advert} key={id ? id : nanoid()} />;
         })}
       </CarListStyled>
 
