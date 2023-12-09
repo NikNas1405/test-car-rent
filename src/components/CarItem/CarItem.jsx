@@ -34,6 +34,8 @@ export const CarItem = ({ car }) => {
 
   const dispatch = useDispatch();
   const favorites = useSelector(getFavorites);
+
+  console.log(favorites);
   const [isFavorite, setIsFavorite] = useState(false);
   //   const isFavorite = favorites.some(item => item.id === car.id);
 
@@ -91,14 +93,14 @@ export const CarItem = ({ car }) => {
 
         <div>
           <ul>
-            {/* <li>{addressParts[1]}</li>
-            <li>{addressParts[2]}</li> */}
+            <li>{addressParts[1]}</li>
+            <li>{addressParts[2]}</li>
             <li>{rentalCompany}</li>
-            {/* <li>{classCar[0]}</li> */}
+            <li>{classCar[0]}</li>
             <li>{type}</li>
             <li>{model}</li>
             <li>{mileage}</li>
-            {/* <li>{functionalities[0]}</li> */}
+            <li>{functionalities[0]}</li>
           </ul>
         </div>
       </TextHolder>

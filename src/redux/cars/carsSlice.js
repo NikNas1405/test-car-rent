@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { initialState } from '../initialState';
 import { fetchAllCars } from '../../utils/getApi';
@@ -15,16 +17,7 @@ const handleRejected = (state, action) => {
 const handleFetchCarsFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-
-  state.currentPage = action.payload;
-  // state.adverts = action.payload;
   state.adverts.push(...action.payload);
-  // state.adverts = [
-  //   ...state.adverts,
-  //   ...action.payload.map(advert => ({ ...advert })),
-  // ];
-
-  // state.adverts = [...state.adverts, ...action.payload];
 };
 
 const carsSlice = createSlice({
@@ -47,6 +40,14 @@ const carsSlice = createSlice({
       .addCase(fetchAllCars.rejected, handleRejected),
 });
 
-export const { addToFavorites, removeFromFavorites } = carsSlice.actions;
+const persistConfig = {
+  key: 'cars',
+  storage,
+  whitelist: ['favorites'],
+};
 
 export const carsReducer = carsSlice.reducer;
+
+export const persistedCarsReducer = persistReducer(persistConfig, carsReducer);
+
+export const { addToFavorites, removeFromFavorites } = carsSlice.actions;
