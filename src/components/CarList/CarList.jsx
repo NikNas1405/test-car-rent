@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { CarListStyled } from './CarList.styled';
 
 import {
-  getCars,
+  // getCars,
   getIsLoading,
   getError,
   getTotalCarsInArr,
@@ -15,17 +15,16 @@ import { fetchAllCars } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
 import { nanoid } from '@reduxjs/toolkit';
 
-export const CarList = () => {
+export const CarList = ({ adverts }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  const adverts = useSelector(getCars);
+  // const adverts = useSelector(getCars);
   const totalCarsInArray = useSelector(getTotalCarsInArr);
   const error = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
 
   const initialized = useRef(false);
-
 
   useEffect(() => {
     if (!initialized.current || page !== 1) {

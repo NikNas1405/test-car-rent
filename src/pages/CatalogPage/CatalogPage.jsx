@@ -5,11 +5,12 @@ import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
 
-import { getIsLoading, getError } from '../../redux/selectors';
+import { getIsLoading, getError, getCars } from '../../redux/selectors';
 
 const CatalogPage = () => {
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
+  const adverts = useSelector(getCars);
 
   return (
     <main>
@@ -20,7 +21,7 @@ const CatalogPage = () => {
         </Error>
       )}
       <Dropdown />
-      <CarList />
+      <CarList adverts={adverts} />
     </main>
   );
 };
