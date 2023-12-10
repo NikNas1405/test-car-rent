@@ -23,10 +23,20 @@ export const FilterForm = () => {
 
   useEffect(() => {
     const makesArray = allAdverts.map(el => el.make);
+    const uniqueCarNames = makesArray.filter((value, index, self) => {
+      return self.indexOf(value) === index;
+    });
+
     const pricesArray = allAdverts.map(el => el.rentalPrice);
     const numericArray = pricesArray.map(str => parseInt(str.slice(1), 10));
-    setOptionMakes(makesArray);
-    setOptionPrice(numericArray);
+    const uniqueNumericArray = numericArray
+      .filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      })
+      .sort((a, b) => a - b);
+
+    setOptionMakes(uniqueCarNames);
+    setOptionPrice(uniqueNumericArray);
   }, [allAdverts]);
 
   const applyFilter = e => {

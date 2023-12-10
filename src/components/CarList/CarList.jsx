@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -13,7 +14,6 @@ import {
 
 import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
-import { nanoid } from '@reduxjs/toolkit';
 
 export const CarList = ({ adverts }) => {
   const dispatch = useDispatch();

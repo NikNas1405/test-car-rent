@@ -4,7 +4,6 @@ import { FilterForm } from '../../components/FilterForm/FilterForm';
 import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
-
 import {
   selectIsLoading,
   selectError,
@@ -26,7 +25,10 @@ const FavoritesPage = () => {
       )}
 
       {favorites.length > 0 ? (
-        <FilterForm /> && <CarList adverts={favorites} />
+        <>
+          <FilterForm />
+          <CarList adverts={favorites} />
+        </>
       ) : (
         <div>
           It appears that you haven't added any adverts to your favorites yet.

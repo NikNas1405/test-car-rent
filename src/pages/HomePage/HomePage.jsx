@@ -3,12 +3,12 @@ import {
   HomeHolder,
   ButtonLink,
   Description,
-  Back,
+  // Back,
 } from './HomePage.styled';
 
 const HomePage = () => {
   return (
-    <Back>
+    <main>
       <HomeHolder>
         <Title>'Ukraine Car Rental Service'</Title>
         <Description>
@@ -34,7 +34,7 @@ const HomePage = () => {
         </Description>
         <ButtonLink to="catalog">Choose a car</ButtonLink>
       </HomeHolder>
-    </Back>
+    </main>
   );
 };
 
