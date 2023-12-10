@@ -12,8 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
    display: flex;
+   flex-direction:column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
  }
 
 code {

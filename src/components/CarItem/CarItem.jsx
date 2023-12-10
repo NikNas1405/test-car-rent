@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 
 import {
   CarItemStyled,
@@ -17,9 +16,14 @@ import {
   removeFromFavorites,
 } from '../../redux/cars/carsSlice';
 
-import { formatNumber } from '../../utils/formating';
+import ModalComponent from '../Modal/Modal';
 
 export const CarItem = ({ car }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   const {
     make,
     year,
@@ -30,19 +34,12 @@ export const CarItem = ({ car }) => {
     rentalCompany,
     address,
     rentalPrice,
-    mileage,
     id,
     description,
   } = car;
 
-  const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-
   const addressParts = address?.split(', ');
   const classCar = rentalCompany?.split(' ');
-  const uiMileage = formatNumber(mileage);
 
   useEffect(() => {
     if (favorites !== null) {
@@ -63,11 +60,11 @@ export const CarItem = ({ car }) => {
   };
 
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(!modalIsOpen);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    if (modalIsOpen) setIsOpen(false);
   }
 
   return (
@@ -108,31 +105,14 @@ export const CarItem = ({ car }) => {
             <li>{classCar[0]}</li>
             <li>{type}</li>
             <li>{model}</li>
-            <li>{uiMileage}</li>
+            <li>{id}</li>
             <li>{functionalities[0]}</li>
           </ul>
         </div>
       </TextHolder>
-
       <button onClick={openModal}>Learn more</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-      >
-        <div>
-          <h2>Hello</h2>
-          <button onClick={closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
-        </div>
-      </Modal>
+
+      <ModalComponent car={car} isOpen={modalIsOpen} closeModal={closeModal} />
     </CarItemStyled>
   );
 };

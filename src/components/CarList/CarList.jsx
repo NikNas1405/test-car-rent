@@ -28,7 +28,7 @@ export const CarList = ({ adverts }) => {
 
   useEffect(() => {
     dispatch(fetchAllCarsForFiltersForm());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!initialized.current || page !== 1) {

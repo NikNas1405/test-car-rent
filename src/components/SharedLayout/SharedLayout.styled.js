@@ -73,6 +73,7 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const Container = styled.main`
+  flex-grow: 1;
   max-width: 1144px;
   margin: 450px auto 0;
   padding: 16px;
