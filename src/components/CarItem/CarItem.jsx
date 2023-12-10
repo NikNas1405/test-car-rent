@@ -72,7 +72,7 @@ export const CarItem = ({ car }) => {
 
   const handleImageError = event => {
     event.target.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWggGWNvpgV9vuCU59n0yoAuZtQTxKGSXH2w&usqp=CAU';
+      'https://images.pexels.com/photos/3007436/pexels-photo-3007436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
   };
 
   return (

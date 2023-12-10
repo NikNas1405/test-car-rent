@@ -5,12 +5,9 @@ export const CarItemStyled = styled.li`
   flex-basis: calc((100% - 3 * 29px) / 4);
   max-width: 274px;
   height: 426px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 `;
 
 export const ImageWrapper = styled.div`
@@ -19,7 +16,6 @@ export const ImageWrapper = styled.div`
   border-radius: 14px;
   margin-bottom: 14px;
   height: 268px;
-
   display: flex;
   flex-direction: column;
 
@@ -54,6 +50,8 @@ export const TextHolder = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 28px;
+  height: 72px;
+  overflow: hidden;
 `;
 
 export const Title = styled.div`
@@ -89,7 +87,6 @@ export const MainInfo = styled.ul`
   font-size: 12px;
   line-height: 1.5;
   gap: 6px 4px;
-  margin-bottom: 28px;
 
   > li {
     padding-right: 6px;
@@ -103,10 +100,8 @@ export const MainInfo = styled.ul`
 `;
 
 export const Button = styled.button`
-  height: 48px;
+  height: 44px;
   padding: 14px;
-  margin-top: auto;
-
   background: #3470ff;
   color: #fff;
   border-radius: 12px;
