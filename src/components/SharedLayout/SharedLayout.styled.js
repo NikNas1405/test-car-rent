@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Header = styled.header`
   background-color: black;
   position: fixed;
@@ -79,7 +72,7 @@ export const NavLinkStyled = styled(NavLink)`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.main`
   max-width: 1144px;
   margin: 450px auto 0;
   padding: 16px;

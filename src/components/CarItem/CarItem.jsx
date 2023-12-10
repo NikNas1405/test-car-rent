@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
 import {
   CarItemStyled,
   ImageWrapper,
   TextHolder,
   FavoriteButton,
+  StyledFaRegHeart,
+  StyledFaHeart,
 } from './CarItem.styled';
 
 import { selectFavorites } from '../../redux/selectors';
@@ -85,9 +86,8 @@ export const CarItem = ({ car }) => {
           type="button"
           onClick={handleToggleFavorite}
           className="cursor-pointer"
-          $isFavorite={isFavorite}
         >
-          {isFavorite ? <FaHeart /> : <FaRegHeart />}
+          {isFavorite ? <StyledFaHeart /> : <StyledFaRegHeart />}
         </FavoriteButton>
       </ImageWrapper>
       <TextHolder>

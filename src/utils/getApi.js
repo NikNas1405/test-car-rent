@@ -47,7 +47,7 @@ export const fetchFilteredAllCars = createAsyncThunk(
     }
 
     if (price !== null && price) {
-      filters.price = price;
+      filters.rentalPrice = price;
     }
 
     const options = new URLSearchParams({

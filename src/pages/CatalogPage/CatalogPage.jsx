@@ -17,7 +17,7 @@ const CatalogPage = () => {
   const adverts = useSelector(selectCars);
 
   return (
-    <main>
+    <>
       {isLoading && <Loader />}
       {error && (
         <Error>
@@ -26,7 +26,7 @@ const CatalogPage = () => {
       )}
       <FilterForm />
       <CarList adverts={adverts} />
-    </main>
+    </>
   );
 };
 export default CatalogPage;

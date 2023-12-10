@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
 export const CarItemStyled = styled.li`
   flex-basis: calc((100% - 3 * 29px) / 4);
@@ -31,8 +32,15 @@ export const FavoriteButton = styled.button`
   > svg {
     width: 18px;
     height: 18px;
-    fill: ${props => (props.isFavorite ? '#3470FF' : '#FFFFFF')};
   }
+`;
+
+export const StyledFaHeart = styled(FaHeart)`
+  color: #3470ff; /* Колір для активної іконки */
+`;
+
+export const StyledFaRegHeart = styled(FaRegHeart)`
+  color: #ffffff; /* Колір для неактивної іконки */
 `;
 
 export const TextHolder = styled.div`

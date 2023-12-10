@@ -6,7 +6,6 @@ import {
   NavLinkStyled,
   Container,
   HeaderContainer,
-  Wrapper,
 } from './SharedLayout.styled';
 
 import logo from '../../utils/images/logo.jpg';
@@ -14,7 +13,7 @@ import Loader from '../Loader/Loader';
 
 export const SharedLayout = () => {
   return (
-    <Wrapper>
+    <>
       <Header>
         <HeaderContainer>
           <Link to="/">
@@ -32,6 +31,20 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </Container>
-    </Wrapper>
+      <footer>
+        <span>
+          All Rights Reserved.
+          <a
+            href="https://github.com/NikNas1405/test-car-rent"
+            className="hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            ANikitina™
+          </a>
+          © 2023
+        </span>
+      </footer>
+    </>
   );
 };

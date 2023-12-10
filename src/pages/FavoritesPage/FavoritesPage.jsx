@@ -16,7 +16,7 @@ const FavoritesPage = () => {
   const favorites = useSelector(selectFavorites);
 
   return (
-    <main>
+    <>
       {isLoading && <Loader />}
       {error && (
         <Error>
@@ -36,7 +36,7 @@ const FavoritesPage = () => {
           for easier access in the future.
         </div>
       )}
-    </main>
+    </>
   );
 };
 

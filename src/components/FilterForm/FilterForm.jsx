@@ -22,21 +22,21 @@ export const FilterForm = () => {
   const [optionPrice, setOptionPrice] = useState([]);
 
   useEffect(() => {
-    const makesArray = allAdverts.map(el => el.make);
-    const uniqueCarNames = makesArray.filter((value, index, self) => {
-      return self.indexOf(value) === index;
-    });
+    const makesArray = allAdverts
+      .map(el => el.make)
+      .filter((value, index, self) => self.indexOf(value) === index)
+      .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
-    const pricesArray = allAdverts.map(el => el.rentalPrice);
-    const numericArray = pricesArray.map(str => parseInt(str.slice(1), 10));
-    const uniqueNumericArray = numericArray
+    const pricesArray = allAdverts
+      .map(el => el.rentalPrice)
+      .map(str => parseInt(str.slice(1), 10))
       .filter((value, index, self) => {
         return self.indexOf(value) === index;
       })
       .sort((a, b) => a - b);
 
-    setOptionMakes(uniqueCarNames);
-    setOptionPrice(uniqueNumericArray);
+    setOptionMakes(makesArray);
+    setOptionPrice(pricesArray);
   }, [allAdverts]);
 
   const applyFilter = e => {
@@ -45,7 +45,6 @@ export const FilterForm = () => {
     if (make === null && price === null) {
       dispatch(fetchAllCars());
     }
-
     dispatch(fetchFilteredAllCars(formData));
   };
 
