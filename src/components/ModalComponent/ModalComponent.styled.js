@@ -3,25 +3,35 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const ModalOverlay = styled(Modal)`
-  position: fixed;
+  /* position: fixed;
   overflow-y: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   background-color: rgba(18, 20, 23, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
+  z-index: 1000;
+  cursor: pointer; */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Більше значення, ніж у вашому хедері та футері */
+  background-color: rgba(18, 20, 23, 0.5);
 `;
 
 export const ModalContent = styled.div`
-  position: absolute;
+  /* position: absolute;
   width: 541px;
   min-height: 752px;
   background: #fff;
@@ -31,6 +41,17 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   overflow: auto;
+  z-index: 1001;  */
+
+  position: relative;
+  width: 541px;
+  min-height: 752px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  z-index: 1001; /* Більше значення, ніж у вашому хедері та футері */
+  overflow: auto;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const CloseButton = styled.button`
@@ -143,12 +164,16 @@ export const RentalConditions = styled.ul`
     background: #f9f9f9;
     height: 32px;
     min-width: 90px;
-
     color: #363535;
-    /* font-family: Montserrat; */
+    font-family: inherit;
     font-size: 12px;
     line-height: 1.5;
     letter-spacing: -0.24px;
+
+    > span {
+      color: #3470ff;
+      font-weight: 600;
+    }
   }
 `;
 

@@ -39,15 +39,11 @@ export const fetchAllCarsForFiltersForm = createAsyncThunk(
 
 export const fetchFilteredAllCars = createAsyncThunk(
   'advert/fetchFilteredAllCars',
-  async ({ make, price }, thunkAPI) => {
+  async ({ make }, thunkAPI) => {
     const filters = {};
 
     if (make !== null && make) {
       filters.make = make;
-    }
-
-    if (price !== null && price) {
-      filters.rentalPrice = price;
     }
 
     const options = new URLSearchParams({
@@ -64,3 +60,31 @@ export const fetchFilteredAllCars = createAsyncThunk(
     }
   }
 );
+
+// export const fetchFilteredAllCars = createAsyncThunk(
+//   'advert/fetchFilteredAllCars',
+//   async ({ make, price }, thunkAPI) => {
+//     const filters = {};
+
+//     if (make !== null && make) {
+//       filters.make = make;
+//     }
+
+//     if (price !== null && price) {
+//       filters.rentalPrice = price;
+//     }
+
+//     const options = new URLSearchParams({
+//       ...filters,
+//       ...defaultParams,
+//     });
+
+//     try {
+//       const response = await axios.get(`${BASE_URL}/advert/?${options}`);
+//       return response.data;
+//     } catch (error) {
+//       console.log(error);
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

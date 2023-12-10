@@ -7,10 +7,11 @@ import { DropdownSelect } from './DropdownSelect';
 import { InputFromTo } from './InputFromTo';
 import {
   selectAllAdvertsForFiltration,
+  selectCars,
   selectFilterForCars,
 } from '../../redux/selectors';
 import { priceOptions } from '../../utils/helpersFunctions';
-import { fetchFilteredAllCars, fetchAllCars } from '../../utils/getApi';
+import { fetchFilteredAllCars } from '../../utils/getApi';
 
 import { StyledForm, Button } from './FilterForm.styled';
 
@@ -21,6 +22,8 @@ export const FilterForm = () => {
 
   const [optionMakes, setOptionMakes] = useState([]);
   const [optionPrice, setOptionPrice] = useState([]);
+
+  const adverts = useSelector(selectCars);
 
   useEffect(() => {
     const makesArray = allAdverts
@@ -35,10 +38,10 @@ export const FilterForm = () => {
 
   const applyFilter = e => {
     e.preventDefault();
-    const { make, price } = formData;
-    if (make === null && price === null) {
-      dispatch(fetchAllCars());
-    }
+
+    const { make } = formData;
+    if (make === null) return;
+
     dispatch(fetchFilteredAllCars(formData));
   };
 
