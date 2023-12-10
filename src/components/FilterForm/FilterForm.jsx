@@ -23,8 +23,6 @@ export const FilterForm = () => {
   const [optionMakes, setOptionMakes] = useState([]);
   const [optionPrice, setOptionPrice] = useState([]);
 
-  const adverts = useSelector(selectCars);
-
   useEffect(() => {
     const makesArray = allAdverts
       .map(el => el.make)

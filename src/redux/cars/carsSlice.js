@@ -54,7 +54,7 @@ const carsSlice = createSlice({
 const persistConfig = {
   key: 'cars',
   storage,
-  whitelist: ['favorites'],
+  whitelist: ['favorites', 'adverts'],
 };
 
 export const carsReducer = carsSlice.reducer;

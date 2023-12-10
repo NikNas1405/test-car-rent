@@ -6,9 +6,9 @@ import { nanoid } from 'nanoid';
 import { carsFilter } from '../../redux/filters/filtersSlice';
 
 import {
-//   CustomSelectContainer,
-//   CustomSelectMenu,
-//   CustomSelectOption,
+  //   CustomSelectContainer,
+  //   CustomSelectMenu,
+  //   CustomSelectOption,
   TitleSelect,
 } from './FilterForm.styled';
 
@@ -29,24 +29,24 @@ export const DropdownSelect = ({ title, placeholder, options, filterType }) => {
     ...options.map(option => ({ value: option, label: option })),
   ];
 
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      background: state.isSelected ? '#FFF' : '#FFF',
-      color: state.isSelected ? '#121417' : '#121417',
-      ':hover': {
-        color: '#121417',
-        background: '#FFF',
-      },
-    }),
-    menu: provided => ({
-      ...provided,
-      borderRadius: '14px',
-      border: '1px solid rgba(18, 20, 23, 0.05)',
-      background: '#FFF',
-      boxShadow: '0px 4px 36px 0px rgba(0, 0, 0, 0.02)',
-    }),
-  };
+  // const customStyles = {
+  //   option: (provided, state) => ({
+  //     ...provided,
+  //     background: state.isSelected ? '#FFF' : '#FFF',
+  //     color: state.isSelected ? '#121417' : '#121417',
+  //     ':hover': {
+  //       color: '#121417',
+  //       background: '#FFF',
+  //     },
+  //   }),
+  //   menu: provided => ({
+  //     ...provided,
+  //     borderRadius: '14px',
+  //     border: '1px solid rgba(18, 20, 23, 0.05)',
+  //     background: '#FFF',
+  //     boxShadow: '0px 4px 36px 0px rgba(0, 0, 0, 0.02)',
+  //   }),
+  // };
 
   return (
     <div>
