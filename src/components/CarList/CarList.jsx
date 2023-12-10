@@ -5,13 +5,13 @@ import { useSearchParams } from 'react-router-dom';
 import { CarListStyled } from './CarList.styled';
 
 import {
-  // getCars,
-  getIsLoading,
-  getError,
-  getTotalCarsInArr,
+  selectIsLoading,
+  selectError,
+  selectTotalCarsInArr,
+  selectIsFilter,
 } from '../../redux/selectors';
 
-import { fetchAllCars } from '../../utils/getApi';
+import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -19,12 +19,16 @@ export const CarList = ({ adverts }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  // const adverts = useSelector(getCars);
-  const totalCarsInArray = useSelector(getTotalCarsInArr);
-  const error = useSelector(getError);
-  const isLoading = useSelector(getIsLoading);
+  const totalCarsInArray = useSelector(selectTotalCarsInArr);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+  const isFilter = useSelector(selectIsFilter);
 
   const initialized = useRef(false);
+
+  useEffect(() => {
+    dispatch(fetchAllCarsForFiltersForm());
+  }, []);
 
   useEffect(() => {
     if (!initialized.current || page !== 1) {
@@ -48,6 +52,7 @@ export const CarList = ({ adverts }) => {
 
       {totalCarsInArray > 0 &&
         totalCarsInArray < 32 &&
+        !isFilter &&
         !error &&
         !isLoading && <button onClick={handleLoadMore}>Load more</button>}
     </>

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Back = styled.div`
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   background-image: linear-gradient(
       180deg,
       rgba(25, 46, 52, 0.61) 5.73%,
@@ -12,6 +12,8 @@ export const Back = styled.div`
     url(https://img.freepik.com/premium-photo/the-car-keys-are-in-hand_112699-282.jpg),
     linear-gradient(180deg, rgba(25, 46, 52, 0.61) 5.73%, rgba(0, 0, 0, 0) 100%);
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   @media (max-width: 368px) {
     padding-top: 600px;

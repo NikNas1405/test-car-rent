@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { initialState } from '../initialState';
-import { fetchAllCars } from '../../utils/getApi';
+import { fetchAllCars, fetchFilteredAllCars } from '../../utils/getApi';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -17,7 +17,15 @@ const handleRejected = (state, action) => {
 const handleFetchCarsFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
+  state.isFilter = false;
   state.adverts.push(...action.payload);
+};
+
+const handleFetchFilteredCarsFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.isFilter = true;
+  state.adverts = action.payload;
 };
 
 const carsSlice = createSlice({
@@ -37,7 +45,10 @@ const carsSlice = createSlice({
     builder
       .addCase(fetchAllCars.pending, handlePending)
       .addCase(fetchAllCars.fulfilled, handleFetchCarsFulfilled)
-      .addCase(fetchAllCars.rejected, handleRejected),
+      .addCase(fetchAllCars.rejected, handleRejected)
+      .addCase(fetchFilteredAllCars.pending, handlePending)
+      .addCase(fetchFilteredAllCars.fulfilled, handleFetchFilteredCarsFulfilled)
+      .addCase(fetchFilteredAllCars.rejected, handleRejected),
 });
 
 const persistConfig = {

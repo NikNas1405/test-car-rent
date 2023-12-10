@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
 import {
   CarItemStyled,
@@ -8,14 +10,13 @@ import {
   FavoriteButton,
 } from './CarItem.styled';
 
-import { getFavorites } from '../../redux/selectors';
+import { selectFavorites } from '../../redux/selectors';
 import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux/cars/carsSlice';
 
-import { FaRegHeart, FaHeart } from 'react-icons/fa6';
-import { formatNumber } from '../../utils/formatNumber';
+import { formatNumber } from '../../utils/formating';
 
 export const CarItem = ({ car }) => {
   const {
@@ -34,10 +35,9 @@ export const CarItem = ({ car }) => {
   } = car;
 
   const dispatch = useDispatch();
-  const favorites = useSelector(getFavorites);
-
-  console.log(favorites);
+  const favorites = useSelector(selectFavorites);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const addressParts = address?.split(', ');
   const classCar = rentalCompany?.split(' ');
@@ -60,6 +60,14 @@ export const CarItem = ({ car }) => {
       setIsFavorite(false);
     }
   };
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <CarItemStyled>
@@ -106,16 +114,25 @@ export const CarItem = ({ car }) => {
         </div>
       </TextHolder>
 
-      <button
-      //   onClick={handleModalOpen}
+      <button onClick={openModal}>Learn more</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
       >
-        Learn more
-      </button>
-      {/* <Modal
-        isOpenModalProp={isOpenModal}
-        handleModalCloseProp={handleModalClose}
-        carDataProp={carData}
-      /> */}
+        <div>
+          <h2>Hello</h2>
+          <button onClick={closeModal}>close</button>
+          <div>I am a modal</div>
+          <form>
+            <input />
+            <button>tab navigation</button>
+            <button>stays</button>
+            <button>inside</button>
+            <button>the modal</button>
+          </form>
+        </div>
+      </Modal>
     </CarItemStyled>
   );
 };

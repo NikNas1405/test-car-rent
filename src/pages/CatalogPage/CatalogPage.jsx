@@ -1,15 +1,20 @@
 import { useSelector } from 'react-redux';
 
-import Dropdown from '../../components/Dropdown/Dropdown';
+import {
+  selectIsLoading,
+  selectError,
+  selectCars,
+} from '../../redux/selectors';
+
 import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
-import { getIsLoading, getError, getCars } from '../../redux/selectors';
+import { FilterForm } from '../../components/FilterForm/FilterForm';
 
 const CatalogPage = () => {
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
-  const adverts = useSelector(getCars);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const adverts = useSelector(selectCars);
 
   return (
     <main>
@@ -19,10 +24,9 @@ const CatalogPage = () => {
           Sorry. Something went wrong. Please reload the page to try again.
         </Error>
       )}
-      <Dropdown />
+      <FilterForm />
       <CarList adverts={adverts} />
     </main>
   );
 };
-
 export default CatalogPage;

@@ -16,7 +16,6 @@ export const fetchAllCars = createAsyncThunk(
     });
     try {
       const response = await axios.get(`${BASE_URL}/advert/?${options}`);
-
       return response.data;
     } catch (error) {
       console.log(error);
@@ -25,22 +24,43 @@ export const fetchAllCars = createAsyncThunk(
   }
 );
 
-// export const fetchFilteredAllCars = createAsyncThunk(
-//   'cars/filteredCars',
-//   async ({ make, price }, thunkAPI) => {
-//     const filter =
-//       (make !== null && make) || (price !== null && '$' + String(price));
+export const fetchAllCarsForFiltersForm = createAsyncThunk(
+  'advert/fetchAllCarsForFiltersForm',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/advert/`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-//     try {
-//       const url = new URL('https://65721f49d61ba6fcc0146a07.mockapi.io/cars');
-//       url.searchParams.append('filter', filter);
-//       url.searchParams.append('limit', 12);
+export const fetchFilteredAllCars = createAsyncThunk(
+  'advert/fetchFilteredAllCars',
+  async ({ make, price }, thunkAPI) => {
+    const filters = {};
 
-//       const response = await axios.get(url);
+    if (make !== null && make) {
+      filters.make = make;
+    }
 
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+    if (price !== null && price) {
+      filters.price = price;
+    }
+
+    const options = new URLSearchParams({
+      ...filters,
+      ...defaultParams,
+    });
+
+    try {
+      const response = await axios.get(`${BASE_URL}/advert/?${options}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
