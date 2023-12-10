@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { CarListStyled } from './CarList.styled';
+import { Button, CarListStyled } from './CarList.styled';
 
 import {
   selectIsLoading,
@@ -42,19 +42,16 @@ export const CarList = ({ adverts }) => {
   };
 
   return (
-    <>
-      <CarListStyled>
-        {adverts.map(advert => {
-          const { id } = advert;
-          return <CarItem car={advert} key={id ? id : nanoid()} />;
-        })}
-      </CarListStyled>
-
+    <CarListStyled>
+      {adverts.map(advert => {
+        const { id } = advert;
+        return <CarItem car={advert} key={id ? id : nanoid()} />;
+      })}
       {totalCarsInArray > 0 &&
         totalCarsInArray < 32 &&
         !isFilter &&
         !error &&
-        !isLoading && <button onClick={handleLoadMore}>Load more</button>}
-    </>
+        !isLoading && <Button onClick={handleLoadMore}>Load more</Button>}
+    </CarListStyled>
   );
 };

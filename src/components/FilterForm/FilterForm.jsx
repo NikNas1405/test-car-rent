@@ -5,13 +5,14 @@ import { Outlet } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import { DropdownSelect } from './DropdownSelect';
 import { InputFromTo } from './InputFromTo';
-
 import {
   selectAllAdvertsForFiltration,
   selectFilterForCars,
 } from '../../redux/selectors';
-
+import { priceOptions } from '../../utils/helpersFunctions';
 import { fetchFilteredAllCars, fetchAllCars } from '../../utils/getApi';
+
+import { StyledForm, Button } from './FilterForm.styled';
 
 export const FilterForm = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,7 @@ export const FilterForm = () => {
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
-    const pricesArray = allAdverts
-      .map(el => el.rentalPrice)
-      .map(str => parseInt(str.slice(1), 10))
-      .filter((value, index, self) => {
-        return self.indexOf(value) === index;
-      })
-      .sort((a, b) => a - b);
-
+    const pricesArray = priceOptions.map(item => item.value);
     setOptionMakes(makesArray);
     setOptionPrice(pricesArray);
   }, [allAdverts]);
@@ -50,14 +44,13 @@ export const FilterForm = () => {
 
   return (
     <section>
-      <form onSubmit={applyFilter}>
+      <StyledForm onSubmit={applyFilter}>
         <DropdownSelect
           title={'Car Brand'}
-          placeholder={'Select a model'}
+          placeholder={'Enter the text'}
           options={optionMakes}
           filterType={'make'}
         />
-
         <DropdownSelect
           title={'Price / 1hour'}
           placeholder={'To $'}
@@ -65,11 +58,8 @@ export const FilterForm = () => {
           filterType={'price'}
         />
         <InputFromTo />
-
-        <div>
-          <button title={'Search'} type={'submit'} />
-        </div>
-      </form>
+        <Button type={'submit'}>Search</Button>
+      </StyledForm>
 
       <Suspense fallback={<Loader />}>
         <Outlet />

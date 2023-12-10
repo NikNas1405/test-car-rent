@@ -7,24 +7,13 @@ import { useState } from 'react';
 
     const handleMileageFromChange = e => {
       const value = e.target.value;
-      // const numericValue = parseFloat(value);
       setMinMileage(value);
-
-      // setDataFromForm(prevState => ({
-      //   ...prevState,
-      //   mileageFrom: numericValue,
-      // }));
     };
 
     const handleMileageToChange = e => {
       const value = e.target.value;
-      // const numericValue = parseFloat(value);
       setMaxMileage(value);
 
-      // setDataFromForm(prevState => ({
-      //   ...prevState,
-      //   mileageTo: numericValue,
-      // }));
     };
 
     return (

@@ -9,6 +9,10 @@ import {
   selectError,
   selectFavorites,
 } from '../../redux/selectors';
+import car from '../../utils/images/89105.jpg';
+
+import { Nothing } from './FavoritesPage.styled';
+import { ButtonLink } from '../HomePage/HomePage.styled';
 
 const FavoritesPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -30,11 +34,17 @@ const FavoritesPage = () => {
           <CarList adverts={favorites} />
         </>
       ) : (
-        <div>
-          It appears that you haven't added any adverts to your favorites yet.
-          To get started, you can add adverts that you like to your favorites
-          for easier access in the future.
-        </div>
+        <Nothing>
+          <p>
+            It appears that you haven't added any adverts to your favorites yet.
+            To get started, you can add adverts that you like to your favorites
+            for easier access in the future.
+          </p>
+          <div>
+            <img src={car} alt="car" />
+          </div>
+          <ButtonLink to="/catalog">Choose a car</ButtonLink>
+        </Nothing>
       )}
     </>
   );

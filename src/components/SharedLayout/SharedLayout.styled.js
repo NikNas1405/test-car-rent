@@ -1,34 +1,34 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 export const Header = styled.header`
   background-color: black;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
-  z-index: 1999;
+  height: 100px;
+  z-index: 200;
 `;
 
 export const HeaderContainer = styled.div`
-  max-width: 1140px;
-  max-height: 450px;
+  max-width: 1144px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
+  padding: 10px;
 
-  @media (max-width: 369px) {
-    height: 170px;
-  }
+  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 
-  @media ((min-width: 321px) and (max-width: 767px)) {
-    height: 130px;
-  }
   @media (min-width: 768px) {
-    height: 90px;
     justify-content: space-between;
   }
 
@@ -73,22 +73,45 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const Container = styled.main`
-  flex-grow: 1;
-  max-width: 1144px;
-  margin: 450px auto 0;
-  padding: 16px;
+  flex: 1;
+  width: 1144px;
+  padding: 100px 10px;
+  margin: 0 auto;
   background-color: #ffffff;
 
-  border: 2px solid red;
+  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
+`;
 
-  @media (max-width: 369px) {
-    margin: 170px;
+export const Footer = styled.footer`
+  background-color: #3f3f3f;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  padding: 8px 16px;
+  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
+  z-index: 200;
+`;
+
+export const FooterContainer = styled.div`
+  max-width: 1144px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: grey;
+    }
   }
 
-  @media ((min-width: 321px) and (max-width: 767px)) {
-    margin: 130px;
-  }
-  @media (min-width: 768px) {
-    margin: 90px;
-  }
+  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 `;

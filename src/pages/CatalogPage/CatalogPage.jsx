@@ -24,6 +24,7 @@ const CatalogPage = () => {
           Sorry. Something went wrong. Please reload the page to try again.
         </Error>
       )}
+
       <FilterForm />
       <CarList adverts={adverts} />
     </>

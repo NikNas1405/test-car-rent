@@ -4,6 +4,10 @@ import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 
 import { carsFilter } from '../../redux/filters/filtersSlice';
+import {
+  DropdownHolder,
+  TitleSelect,
+} from './FilterForm.styled';
 
 export const DropdownSelect = ({ title, placeholder, options, filterType }) => {
   const [selectedValue, setSelectedValue] = useState('');
@@ -22,8 +26,8 @@ export const DropdownSelect = ({ title, placeholder, options, filterType }) => {
   ];
 
   return (
-    <div>
-      <h3>{title}</h3>
+    <DropdownHolder>
+      <TitleSelect>{title}</TitleSelect>
       <Select
         id={nanoid()}
         options={formattedOptions}
@@ -33,6 +37,6 @@ export const DropdownSelect = ({ title, placeholder, options, filterType }) => {
         onChange={handleDataChange}
         placeholder={placeholder}
       />
-    </div>
+    </DropdownHolder>
   );
 };

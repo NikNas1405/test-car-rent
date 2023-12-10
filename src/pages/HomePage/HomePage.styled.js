@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Back = styled.div`
-  /* width: 100%;
-  height: 100%; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: linear-gradient(
       180deg,
       rgba(25, 46, 52, 0.61) 5.73%,
@@ -14,18 +17,11 @@ export const Back = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  @media (max-width: 368px) {
-    padding-top: 600px;
-  }
-
-  @media (max-width: 728px) {
-    padding-top: 300px;
-  }
 `;
 
 export const HomeHolder = styled.div`
-  margin: 100px auto;
+  margin: 200px auto;
+  padding: 40px;
   max-width: 1140px;
   display: flex;
   flex-direction: column;

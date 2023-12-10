@@ -1,10 +1,30 @@
-import Modal from 'react-modal';
-import { formatNumber } from '../../utils/formating';
 import { useEffect } from 'react';
+import { FaTimes } from 'react-icons/fa';
+import Modal from 'react-modal';
+
+import { formatNumber } from '../../utils/helpersFunctions';
+import {
+  CloseButton,
+  ModalOverlay,
+  ModalContent,
+  RentalButton,
+  ImageHolder,
+  TitleHolder,
+  MainInfo,
+  Description,
+  AccessoriesInfo,
+  DescribeTitle,
+  RentalConditions,
+} from './ModalComponent.styled';
 
 Modal.setAppElement('#root');
 
-export const ModalComponent = ({ car, isOpen, closeModal }) => {
+export const ModalComponent = ({
+  car,
+  isOpen,
+  closeModal,
+  handleImageError,
+}) => {
   const {
     make,
     year,
@@ -20,46 +40,52 @@ export const ModalComponent = ({ car, isOpen, closeModal }) => {
     engineSize,
     accessories,
     rentalConditions,
+    functionalities,
   } = car;
 
   const addressParts = address?.split(', ');
   const uiMileage = formatNumber(mileage);
   const conditionsArray = rentalConditions.split('\n');
 
-  //   const minimumAgeRegex = /Minimum age: (\d+)/;
-  //   const match = rentalConditions.match(minimumAgeRegex);
-
-  //   const minAge = match && match[1] ? match[1] : 18;
-
   useEffect(() => {
+    const body = document.body;
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'visible';
+      body.style.overflow = 'visible';
     }
+
+    return () => {
+      body.style.overflow = 'visible';
+    };
   }, [isOpen]);
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={closeModal}>
-      <button onClick={closeModal}>close</button>
-      <div>
-        <img
-          src={
-            img
-              ? img
-              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWggGWNvpgV9vuCU59n0yoAuZtQTxKGSXH2w&usqp=CAU'
-          }
-          alt={'car'}
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <span>{make}</span>
-        <span>{model}</span>
-        <span> {year}</span>
-      </div>
-      <div>
-        <ul>
+    <ModalOverlay
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      onClick={closeModal}
+      shouldCloseOnOverlayClick={true}
+    >
+      <ModalContent>
+        <CloseButton onClick={closeModal}>
+          <FaTimes />
+        </CloseButton>
+        <ImageHolder>
+          <img
+            src={img}
+            alt={'car'}
+            loading="lazy"
+            onError={handleImageError}
+          />
+        </ImageHolder>
+        <TitleHolder>
+          <span>{make} </span>
+          <span>{model}, </span>
+          <span>{year}</span>
+        </TitleHolder>
+
+        <MainInfo>
           <li>{addressParts[1]}</li>
           <li>{addressParts[2]}</li>
           <li>Id: {id}</li>
@@ -67,36 +93,36 @@ export const ModalComponent = ({ car, isOpen, closeModal }) => {
           <li>Type: {type}</li>
           <li>Fuel Consumption: {fuelConsumption}</li>
           <li>Engine Size{engineSize}</li>
-        </ul>
-      </div>
-      <div>
-        <p>{description}</p>
-      </div>
-      <div>
-        <h3>Accessories and functionalities: </h3>
-        <ul>
+        </MainInfo>
+
+        <Description>{description}</Description>
+
+        <DescribeTitle>Accessories and functionalities: </DescribeTitle>
+        <AccessoriesInfo>
           {accessories.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
-        </ul>
-      </div>
+          {functionalities.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </AccessoriesInfo>
 
-      <div>
-        <h3>Rental Conditions: </h3>
-        <ul>
+        <DescribeTitle>Rental Conditions: </DescribeTitle>
+        <RentalConditions>
           {conditionsArray.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
           {<li>Mileage: {uiMileage}</li>}
           {<li>Price: {rentalPrice}</li>}
-        </ul>
-      </div>
-      <div>
-        <a href="tel:+380730000000" type="button">
-          Rental car
-        </a>
-      </div>
-    </Modal>
+        </RentalConditions>
+
+        <div>
+          <RentalButton href="tel:+380730000000" type="button">
+            Rental car
+          </RentalButton>
+        </div>
+      </ModalContent>
+    </ModalOverlay>
   );
 };
 

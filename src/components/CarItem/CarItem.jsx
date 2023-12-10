@@ -1,6 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+import { selectFavorites } from '../../redux/selectors';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/cars/carsSlice';
+import ModalComponent from '../ModalComponent/ModalComponent';
+
 import {
   CarItemStyled,
   ImageWrapper,
@@ -8,15 +15,11 @@ import {
   FavoriteButton,
   StyledFaRegHeart,
   StyledFaHeart,
+  TitleHolder,
+  Title,
+  MainInfo,
+  Button,
 } from './CarItem.styled';
-
-import { selectFavorites } from '../../redux/selectors';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../../redux/cars/carsSlice';
-
-import ModalComponent from '../Modal/Modal';
 
 export const CarItem = ({ car }) => {
   const dispatch = useDispatch();
@@ -60,24 +63,26 @@ export const CarItem = ({ car }) => {
   };
 
   function openModal() {
-    setIsOpen(!modalIsOpen);
+    setIsOpen(true);
   }
 
   function closeModal() {
     if (modalIsOpen) setIsOpen(false);
   }
 
+  const handleImageError = event => {
+    event.target.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWggGWNvpgV9vuCU59n0yoAuZtQTxKGSXH2w&usqp=CAU';
+  };
+
   return (
     <CarItemStyled>
       <ImageWrapper>
         <img
-          src={
-            img
-              ? img
-              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWggGWNvpgV9vuCU59n0yoAuZtQTxKGSXH2w&usqp=CAU'
-          }
+          src={img}
           alt={description}
           loading="lazy"
+          onError={handleImageError}
         />
         <FavoriteButton
           type="button"
@@ -88,31 +93,34 @@ export const CarItem = ({ car }) => {
         </FavoriteButton>
       </ImageWrapper>
       <TextHolder>
-        <div>
-          <p>
-            <span>{make}</span>
-            <span>{model}</span>
-            <span> {year}</span>
-          </p>
+        <Title>
+          <TitleHolder>
+            <span>{make} </span>
+            <span>{model}, </span>
+            <span>{year}</span>
+          </TitleHolder>
           <p>{rentalPrice}</p>
-        </div>
+        </Title>
 
-        <div>
-          <ul>
-            <li>{addressParts[1]}</li>
-            <li>{addressParts[2]}</li>
-            <li>{rentalCompany}</li>
-            <li>{classCar[0]}</li>
-            <li>{type}</li>
-            <li>{model}</li>
-            <li>{id}</li>
-            <li>{functionalities[0]}</li>
-          </ul>
-        </div>
+        <MainInfo>
+          <li>{addressParts[1]}</li>
+          <li>{addressParts[2]}</li>
+          <li>{rentalCompany}</li>
+          <li>{classCar[0]}</li>
+          <li>{type}</li>
+          <li>{model}</li>
+          <li>{id}</li>
+          <li>{functionalities[0]}</li>
+        </MainInfo>
       </TextHolder>
-      <button onClick={openModal}>Learn more</button>
+      <Button onClick={openModal}>Learn more</Button>
 
-      <ModalComponent car={car} isOpen={modalIsOpen} closeModal={closeModal} />
+      <ModalComponent
+        car={car}
+        isOpen={modalIsOpen}
+        closeModal={closeModal}
+        handleImageError={handleImageError}
+      />
     </CarItemStyled>
   );
 };
