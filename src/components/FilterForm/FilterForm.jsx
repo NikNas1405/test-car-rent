@@ -7,7 +7,6 @@ import { DropdownSelect } from './DropdownSelect';
 import { InputFromTo } from './InputFromTo';
 import {
   selectAllAdvertsForFiltration,
-  selectCars,
   selectFilterForCars,
 } from '../../redux/selectors';
 import { priceOptions } from '../../utils/helpersFunctions';

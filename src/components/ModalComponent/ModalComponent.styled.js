@@ -3,20 +3,11 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const ModalOverlay = styled(Modal)`
-  /* position: fixed;
-  overflow-y: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+   overflow-y: auto;
+ 
   width: 100%;
   height: 100%;
-  background-color: rgba(18, 20, 23, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  cursor: pointer; */
+  cursor: pointer;
 
   position: fixed;
   top: 0;
@@ -26,12 +17,12 @@ export const ModalOverlay = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* Більше значення, ніж у вашому хедері та футері */
+  z-index: 1000; 
   background-color: rgba(18, 20, 23, 0.5);
 `;
 
 export const ModalContent = styled.div`
-  /* position: absolute;
+  position: absolute;
   width: 541px;
   min-height: 752px;
   background: #fff;
@@ -41,17 +32,7 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   overflow: auto;
-  z-index: 1001;  */
-
-  position: relative;
-  width: 541px;
-  min-height: 752px;
-  background: #fff;
-  border-radius: 24px;
-  padding: 40px;
-  z-index: 1001; /* Більше значення, ніж у вашому хедері та футері */
-  overflow: auto;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1001; 
 `;
 
 export const CloseButton = styled.button`
