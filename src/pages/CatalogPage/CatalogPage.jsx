@@ -10,7 +10,7 @@ import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
 import { FilterForm } from '../../components/FilterForm/FilterForm';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { useSearchParams } from 'react-router-dom';
 
@@ -26,12 +26,12 @@ const CatalogPage = () => {
     dispatch(fetchAllCarsForFiltersForm());
   }, [dispatch]);
 
-  const initialized = useRef(false);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (initialized.current || page !== 1) {
+    if (!initialized || page !== 1) {
       dispatch(fetchAllCars(page));
-      initialized.current = true;
+      setInitialized(true);
     }
   }, [dispatch, page, initialized]);
 
