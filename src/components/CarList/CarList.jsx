@@ -1,7 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 
 import { Button, CarListStyled, Wrapper } from './CarList.styled';
 
@@ -12,35 +10,14 @@ import {
   selectIsFilter,
 } from '../../redux/selectors';
 
-import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
 import { SectionContainer } from '../GlobalStyle';
 
-export const CarList = ({ adverts, showLoadMoreButton }) => {
-  const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
-  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+export const CarList = ({ adverts, showLoadMoreButton, handleLoadMore }) => {
   const totalCarsInArray = useSelector(selectTotalCarsInArr);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const isFilter = useSelector(selectIsFilter);
-
-  const initialized = useRef(false);
-
-  useEffect(() => {
-    dispatch(fetchAllCarsForFiltersForm());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!initialized.current || page !== 1) {
-      dispatch(fetchAllCars(page));
-      initialized.current = true;
-    }
-  }, [dispatch, page, initialized]);
-
-  const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
-  };
 
   return (
     <SectionContainer>
