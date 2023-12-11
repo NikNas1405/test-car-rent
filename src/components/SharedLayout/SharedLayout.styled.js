@@ -73,8 +73,7 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const Container = styled.main`
-  flex: 1;
-  width: 1144px;
+  max-width: 1144px;
   padding: 100px 10px;
   margin: 0 auto;
   background-color: #ffffff;
