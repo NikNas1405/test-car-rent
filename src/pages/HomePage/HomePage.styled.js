@@ -70,7 +70,8 @@ export const ButtonLink = styled(NavLink)`
   font-size: 16px;
   text-transform: uppercase;
 
-  &:is(:focus, :hover) {
+  &:focus,
+  &:hover {
     background: #0b44cd;
   }
 `;

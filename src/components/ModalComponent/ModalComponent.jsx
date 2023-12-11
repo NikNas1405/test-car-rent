@@ -159,15 +159,15 @@ export default ModalComponent;
 // Modal.setAppElement('#root');
 
 // const CarModal = ({
-//   isModalOpen,
-//   onClose,
-//   selectedAdvert,
+//   isOpen,
+//   closeModal,
+//   car,
 //   handleImageError,
 // }) => {
 //   return (
 //     <Modal
-//       isOpen={isModalOpen}
-//       onRequestClose={onClose}
+//       isOpen={isOpen}
+//       onRequestClose={closeModal}
 //       style={customStyles}
 //       contentLabel="onRequestClose Example"
 //     >
@@ -177,68 +177,68 @@ export default ModalComponent;
 //             <button
 //               className={styled.closeButton}
 //               type="button"
-//               onClick={onClose}
+//               onClick={closeModal}
 //             >
 //               <IoMdClose className={styled.closeIcon} />
 //             </button>
 //             <div>
-//               <div key={selectedAdvert.id}>
+//               <div key={car.id}>
 //                 <div className={styled.carModalImageWrapper}>
 //                   <img
 //                     onError={handleImageError}
 //                     className={styled.imageCar}
-//                     src={selectedAdvert.img}
-//                     alt={`${selectedAdvert.make} ${selectedAdvert.model}`}
+//                     src={car.img}
+//                     alt={`${car.make} ${car.model}`}
 //                   />
 //                 </div>
 //                 <h2 className={styled.carsModalTitle}>
-//                   {selectedAdvert.make}
+//                   {car.make}
 //                   <span className={styled.carsTitleSecond}>
-//                     {selectedAdvert.model}
+//                     {car.model}
 //                   </span>
-//                   ,{selectedAdvert.year}
+//                   ,{car.year}
 //                 </h2>
 //                 <ul className={styled.firstItemsWrapper}>
 //                   <li className={styled.firstItems}>
-//                     {selectedAdvert.address}
+//                     {car.address}
 //                   </li>
 //                   <span className={styled.firstItems}>|</span>
 //                   <li className={styled.firstItems}>
-//                     Id: {selectedAdvert.id}{' '}
+//                     Id: {car.id}{' '}
 //                     <span className={styled.firstItems}>|</span>
 //                   </li>
 
 //                   <li className={styled.firstItems}>
-//                     Year: {selectedAdvert.year}
+//                     Year: {car.year}
 //                     <span className={styled.firstItems}>|</span>
 //                   </li>
 
 //                   <li className={styled.firstItems}>
-//                     Type: {selectedAdvert.type}
+//                     Type: {car.type}
 //                     <span className={styled.firstItems}>|</span>
 //                   </li>
 
 //                   <li className={styled.firstItems}>
-//                     Fuel consumption: {selectedAdvert.fuelConsumption}
+//                     Fuel consumption: {car.fuelConsumption}
 //                     <span className={styled.firstItems}>|</span>
 //                   </li>
 
 //                   <li className={styled.firstItems}>
-//                     Engine size: {selectedAdvert.engineSize}
+//                     Engine size: {car.engineSize}
 //                   </li>
 //                 </ul>
 //                 <h4 className={styled.titleDescriptionOne}>
-//                   {selectedAdvert.description}
+//                   {car.description}
 //                 </h4>
 //                 <h4 className={styled.titleDescription}>
 //                   Accessories and functionalities:
 //                 </h4>
 //                 <ul>
 //                   <li className={styled.firstItems}>
-//                     {selectedAdvert.accessories}
+//                     {car.accessories}
 //                   </li>
 //                   <li className={styled.firstItems}>
-//                     {selectedAdvert.functionalities}
+//                     {car.functionalities}
 //                   </li>
 //                 </ul>
 //                 <div className={styled.rentalConditionsWrapper}>
@@ -265,7 +265,7 @@ export default ModalComponent;
 //                     <li className={styled.rentalItem}>
 //                       Price:{' '}
 //                       <span className={styled.rentalItemSecond}>
-//                         {selectedAdvert.rentalPrice}
+//                         {car.rentalPrice}
 //                       </span>
 //                     </li>
 //                   </ul>

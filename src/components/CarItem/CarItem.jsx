@@ -115,19 +115,12 @@ export const CarItem = ({ car }) => {
       </TextHolder>
       <Button onClick={openModal}>Learn more</Button>
 
-      <ModalComponent
+         <ModalComponent
         car={car}
         isOpen={modalIsOpen}
         closeModal={closeModal}
         handleImageError={handleImageError}
       />
-
-      {/* <ModalComponent
-        selectedAdvert={car}
-        isModalOpen={modalIsOpen}
-        onClose={closeModal}
-        handleImageError={handleImageError}
-      /> */}
     </CarItemStyled>
   );
 };
