@@ -61,4 +61,5 @@ export const carsReducer = carsSlice.reducer;
 
 export const persistedCarsReducer = persistReducer(persistConfig, carsReducer);
 
-export const { addToFavorites, removeFromFavorites } = carsSlice.actions;
+export const { addToFavorites, removeFromFavorites, clearCarsData } =
+  carsSlice.actions;
