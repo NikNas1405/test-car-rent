@@ -7,8 +7,6 @@ import {
   NavLinkStyled,
   Container,
   HeaderContainer,
-  Footer,
-  FooterContainer,
   Wrapper,
 } from './SharedLayout.styled';
 import logo from '../../utils/images/logo.jpg';
@@ -34,17 +32,7 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </Container>
-      <Footer>
-        <FooterContainer>
-          <a
-            href="https://github.com/NikNas1405/test-car-rent"
-            target="_blank"
-            rel="noreferrer"
-          >
-            All rights reserved © 2023
-          </a>
-        </FooterContainer>
-      </Footer>
+
     </Wrapper>
   );
 };
