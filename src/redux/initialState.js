@@ -13,7 +13,6 @@ export const initialState = {
       mileageFrom: 0,
       mileageTo: 0,
     },
-
     allAdvertsForFiltration: [],
     isLoading: false,
     error: null,
