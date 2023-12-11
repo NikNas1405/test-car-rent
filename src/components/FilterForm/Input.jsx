@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Holder, Input1, Input2, InputLabel } from './FilterForm.styled';
 
-export const InputFromTo = () => {
+export const Input = () => {
   const [minMileage, setMinMileage] = useState('');
   const [maxMileage, setMaxMileage] = useState('');
 

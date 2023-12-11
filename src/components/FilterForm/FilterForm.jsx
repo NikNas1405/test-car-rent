@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import Loader from '../Loader/Loader';
 import { DropdownSelect } from './DropdownSelect';
-import { InputFromTo } from './InputFromTo';
+import { Input } from './Input';
 import {
   selectAllAdvertsForFiltration,
   selectFilterForCars,
@@ -70,7 +70,7 @@ export const FilterForm = () => {
           filterType={'price'}
           customStyles={priceStyles}
         />
-        <InputFromTo />
+        <Input />
         <Button type="submit">Search</Button>
         <Button type="button" onClick={resetFilters}>
           Reset

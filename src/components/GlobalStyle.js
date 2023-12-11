@@ -42,9 +42,8 @@ export const Error = styled.div`
   margin: 20px;
 `;
 
-
 export const SectionContainer = styled.section`
-  max-width: 1240px;
+  max-width: 1144px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 40px;
 `;
