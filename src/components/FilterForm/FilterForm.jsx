@@ -12,7 +12,14 @@ import {
 import { priceOptions } from '../../utils/helpersFunctions';
 import { fetchFilteredAllCars } from '../../utils/getApi';
 
-import { StyledForm, Button } from './FilterForm.styled';
+import {
+  StyledForm,
+  Button,
+  carStyles,
+  priceStyles,
+} from './FilterForm.styled';
+import { resetCarsFilter } from '../../redux/filters/filtersSlice';
+import { SectionContainer } from '../GlobalStyle';
 
 export const FilterForm = () => {
   const dispatch = useDispatch();
@@ -42,28 +49,37 @@ export const FilterForm = () => {
     dispatch(fetchFilteredAllCars(formData));
   };
 
+  const resetFilters = () => {
+    dispatch(resetCarsFilter());
+  };
+
   return (
-    <section>
+    <SectionContainer>
       <StyledForm onSubmit={applyFilter}>
         <DropdownSelect
           title={'Car Brand'}
           placeholder={'Enter the text'}
           options={optionMakes}
           filterType={'make'}
+          customStyles={carStyles}
         />
         <DropdownSelect
           title={'Price / 1hour'}
           placeholder={'To $'}
           options={optionPrice}
           filterType={'price'}
+          customStyles={priceStyles}
         />
         <InputFromTo />
-        <Button type={'submit'}>Search</Button>
+        <Button type="submit">Search</Button>
+        <Button type="button" onClick={resetFilters}>
+          Reset
+        </Button>
       </StyledForm>
 
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </section>
+    </SectionContainer>
   );
 };

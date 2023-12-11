@@ -7,8 +7,12 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: initialState.filter,
   reducers: {
-    carsFilter(state, action) {
+    setCarsFilter(state, action) {
       state.formData = { ...state.formData, ...action.payload };
+    },
+    resetCarsFilter(state, action) {
+      state.formData = { ...state };
+    // переробити!
     },
   },
   extraReducers: builder => {
@@ -28,6 +32,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const { carsFilter } = filterSlice.actions;
+export const { setCarsFilter, resetCarsFilter } = filterSlice.actions;
 
 export const filterReducer = filterSlice.reducer;

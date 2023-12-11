@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import { FaRegHeart, FaHeart } from 'react-icons/fa6';
 
 export const CarItemStyled = styled.li`
-  flex-basis: calc((100% - 3 * 29px) / 4);
+  flex-basis: calc((100% - 29px));
   max-width: 274px;
   height: 426px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (min-width: 768px) {
+    flex-basis: calc((100% - 3 * 29px) / 4);
+  }
 `;
 
 export const ImageWrapper = styled.div`

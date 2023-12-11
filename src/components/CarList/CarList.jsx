@@ -14,6 +14,7 @@ import {
 
 import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
+import { SectionContainer } from '../GlobalStyle';
 
 export const CarList = ({ adverts }) => {
   const dispatch = useDispatch();
@@ -42,16 +43,18 @@ export const CarList = ({ adverts }) => {
   };
 
   return (
-    <CarListStyled>
-      {adverts.map(advert => {
-        const { id } = advert;
-        return <CarItem car={advert} key={id ? id : nanoid()} />;
-      })}
-      {totalCarsInArray > 0 &&
-        totalCarsInArray < 32 &&
-        !isFilter &&
-        !error &&
-        !isLoading && <Button onClick={handleLoadMore}>Load more</Button>}
-    </CarListStyled>
+    <SectionContainer>
+      <CarListStyled>
+        {adverts.map(advert => {
+          const { id } = advert;
+          return <CarItem car={advert} key={id ? id : nanoid()} />;
+        })}
+        {totalCarsInArray > 0 &&
+          totalCarsInArray < 32 &&
+          !isFilter &&
+          !error &&
+          !isLoading && <Button onClick={handleLoadMore}>Load more</Button>}
+      </CarListStyled>
+    </SectionContainer>
   );
 };
