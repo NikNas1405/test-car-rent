@@ -23,13 +23,6 @@ export const DropdownSelect = ({
     setSelectedValue(value);
   };
 
-  // const defaultOption = { value: null, label: 'Select an option' };
-
-  // const formattedOptions = [
-  //   defaultOption,
-  //   ...options.map(option => ({ value: option, label: option })),
-  // ];
-
   const formattedOptions = [
     ...options.map(option => ({ value: option, label: option })),
   ];

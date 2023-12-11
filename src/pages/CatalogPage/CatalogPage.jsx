@@ -26,7 +26,7 @@ const CatalogPage = () => {
       )}
 
       <FilterForm />
-      <CarList adverts={adverts} />
+      <CarList adverts={adverts} showLoadMoreButton={true} />
     </>
   );
 };

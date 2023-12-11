@@ -26,7 +26,6 @@ export const HeaderContainer = styled.div`
   justify-content: center;
   padding: 20px;
   height: 100%;
-  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 
   @media (min-width: 768px) {
     justify-content: space-between;
@@ -74,8 +73,7 @@ export const NavLinkStyled = styled(NavLink)`
 
 export const Container = styled.main`
   padding: 100px 0;
+  width: 1144px;
   margin: 0 auto;
   background-color: #ffffff;
-
-  border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 `;

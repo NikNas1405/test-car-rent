@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StyledDiv = styled.div`
+  padding-top: 80px;
+`;
+
 export const Nothing = styled.div`
   margin: 100px auto;
   display: flex;

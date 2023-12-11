@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 
-import { FilterForm } from '../../components/FilterForm/FilterForm';
 import Loader from '../../components/Loader/Loader';
 import { CarList } from '../../components/CarList/CarList';
 import { Error } from '../../components/GlobalStyle';
@@ -11,7 +10,7 @@ import {
 } from '../../redux/selectors';
 import car from '../../utils/images/89105.jpg';
 
-import { Nothing } from './FavoritesPage.styled';
+import { Nothing, StyledDiv } from './FavoritesPage.styled';
 import { ButtonLink } from '../HomePage/HomePage.styled';
 
 const FavoritesPage = () => {
@@ -20,7 +19,7 @@ const FavoritesPage = () => {
   const favorites = useSelector(selectFavorites);
 
   return (
-    <>
+    <StyledDiv>
       {isLoading && <Loader />}
       {error && (
         <Error>
@@ -30,8 +29,7 @@ const FavoritesPage = () => {
 
       {favorites.length > 0 ? (
         <>
-          <FilterForm />
-          <CarList adverts={favorites} />
+          <CarList adverts={favorites} showLoadMoreButton={false} />
         </>
       ) : (
         <Nothing>
@@ -46,7 +44,7 @@ const FavoritesPage = () => {
           <ButtonLink to="/catalog">Choose a car</ButtonLink>
         </Nothing>
       )}
-    </>
+    </StyledDiv>
   );
 };
 

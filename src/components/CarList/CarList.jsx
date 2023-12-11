@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, CarListStyled } from './CarList.styled';
+import { Button, CarListStyled, Wrapper } from './CarList.styled';
 
 import {
   selectIsLoading,
@@ -16,7 +16,7 @@ import { fetchAllCars, fetchAllCarsForFiltersForm } from '../../utils/getApi';
 import { CarItem } from '../CarItem/CarItem';
 import { SectionContainer } from '../GlobalStyle';
 
-export const CarList = ({ adverts }) => {
+export const CarList = ({ adverts, showLoadMoreButton }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
@@ -44,17 +44,21 @@ export const CarList = ({ adverts }) => {
 
   return (
     <SectionContainer>
-      <CarListStyled>
-        {adverts.map(advert => {
-          const { id } = advert;
-          return <CarItem car={advert} key={id ? id : nanoid()} />;
-        })}
+      <Wrapper>
+        <CarListStyled>
+          {adverts.map(advert => {
+            const { id } = advert;
+            return <CarItem car={advert} key={id ? id : nanoid()} />;
+          })}
+        </CarListStyled>
+
         {totalCarsInArray > 0 &&
           totalCarsInArray < 32 &&
           !isFilter &&
           !error &&
+          showLoadMoreButton &&
           !isLoading && <Button onClick={handleLoadMore}>Load more</Button>}
-      </CarListStyled>
+      </Wrapper>
     </SectionContainer>
   );
 };

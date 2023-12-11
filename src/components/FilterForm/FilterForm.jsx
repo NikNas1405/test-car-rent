@@ -18,7 +18,7 @@ import {
   carStyles,
   priceStyles,
 } from './FilterForm.styled';
-import { resetCarsFilter } from '../../redux/filters/filtersSlice';
+
 import { SectionContainer } from '../GlobalStyle';
 
 export const FilterForm = () => {
@@ -49,10 +49,6 @@ export const FilterForm = () => {
     dispatch(fetchFilteredAllCars(formData));
   };
 
-  const resetFilters = () => {
-    dispatch(resetCarsFilter());
-  };
-
   return (
     <SectionContainer>
       <StyledForm onSubmit={applyFilter}>
@@ -72,9 +68,6 @@ export const FilterForm = () => {
         />
         <Input />
         <Button type="submit">Search</Button>
-        <Button type="button" onClick={resetFilters}>
-          Reset
-        </Button>
       </StyledForm>
 
       <Suspense fallback={<Loader />}>

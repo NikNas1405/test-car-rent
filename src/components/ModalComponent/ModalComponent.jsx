@@ -43,7 +43,11 @@ export const ModalComponent = ({
   } = car;
   const addressParts = address?.split(', ');
   const uiMileage = formatNumber(mileage);
+
   const conditionsArray = rentalConditions.split('\n');
+  const firstElementParts = conditionsArray[0].split(':');
+  const textPart = firstElementParts[0].trim();
+  const numberPart = parseInt(firstElementParts[1].trim(), 10);
 
   const priseFormat = formatPriceSelect(rentalPrice);
 
@@ -131,10 +135,20 @@ export const ModalComponent = ({
           ))}
         </AccessoriesInfo>
         <DescribeTitle>Rental Conditions: </DescribeTitle>
+
         <RentalConditions>
           {conditionsArray.map((item, index) => (
-            <li key={index}>{item}</li>
+            <li key={index}>
+              {index === 0 ? (
+                <>
+                  {textPart}: <span>{numberPart}</span>
+                </>
+              ) : (
+                item
+              )}
+            </li>
           ))}
+
           {
             <li>
               Mileage: <span>{uiMileage}</span>
@@ -146,6 +160,7 @@ export const ModalComponent = ({
             </li>
           }
         </RentalConditions>
+
         <div>
           <RentalButton href="tel:+380730000000" type="button">
             Rental car

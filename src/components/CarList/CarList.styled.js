@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-export const CarListStyled = styled.ul`
+export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export const CarListStyled = styled.ul`
+  display: flex;
+  width: 100%;
   flex-wrap: wrap;
   gap: 50px 29px;
 `;
