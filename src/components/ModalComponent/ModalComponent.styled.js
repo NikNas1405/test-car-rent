@@ -1,37 +1,16 @@
 import styled from 'styled-components';
 
-// import Modal from 'react-modal';
-
-export const ModalOverlay = styled.div`
-  overflow-y: auto;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+export const ModalContent = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  background-color: rgba(18, 20, 23, 0.5);
+  flex-direction: column;
+  align-items: flex-start;
+  width: 541px;
+  min-height: 752px;
+  max-height: 800px;
+  padding: 40px;
+  border-radius: 24px;
+  background-color: #fff;
 `;
-
-// export const ModalContent = styled(Modal) `
-//   position: absolute;
-//   width: 541px;
-//   min-height: 752px;
-//   background: #fff;
-//   border-radius: 24px;
-//   padding: 40px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   overflow: auto;
-//   z-index: 1001;
-// `;
 
 export const CloseButton = styled.button`
   position: absolute;
