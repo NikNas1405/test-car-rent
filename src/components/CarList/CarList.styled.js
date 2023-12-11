@@ -6,7 +6,8 @@ export const CarListStyled = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px 29px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  /* width: 100%; */
 `;
 
 export const Button = styled.button`

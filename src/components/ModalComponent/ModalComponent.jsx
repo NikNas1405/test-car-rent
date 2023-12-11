@@ -5,8 +5,6 @@ import Modal from 'react-modal';
 import { formatNumber, formatPriceSelect } from '../../utils/helpersFunctions';
 import {
   CloseButton,
-  ModalOverlay,
-  ModalContent,
   RentalButton,
   ImageHolder,
   TitleHolder,
@@ -15,6 +13,7 @@ import {
   AccessoriesInfo,
   DescribeTitle,
   RentalConditions,
+  // ModalOverlay,
 } from './ModalComponent.styled';
 
 Modal.setAppElement('#root');
@@ -42,7 +41,6 @@ export const ModalComponent = ({
     rentalConditions,
     functionalities,
   } = car;
-
   const addressParts = address?.split(', ');
   const uiMileage = formatNumber(mileage);
   const conditionsArray = rentalConditions.split('\n');
@@ -62,78 +60,90 @@ export const ModalComponent = ({
     };
   }, [isOpen]);
 
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      borderRadius: '24px',
+      marginRight: '-20%',
+      transform: 'translate(-50%, -50%)',
+      padding: '40px 37px',
+      width: 541,
+      height: 'auto',
+      zIndex: 1001,
+      overflow: 'auto',
+    },
+  };
+
   return (
-    <ModalOverlay
+    // <ModalOverlay>
+    <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       onClick={closeModal}
-      shouldCloseOnOverlayClick={true}
+      style={customStyles}
     >
-      <ModalContent>
-        <CloseButton onClick={closeModal}>
-          <FaTimes />
-        </CloseButton>
-        <ImageHolder>
-          <img
-            src={img}
-            alt={'car'}
-            loading="lazy"
-            onError={handleImageError}
-          />
-        </ImageHolder>
-        <TitleHolder>
-          <span>{make} </span>
-          <span>{model}, </span>
-          <span>{year}</span>
-        </TitleHolder>
+      <CloseButton onClick={closeModal}>
+        <FaTimes />
+      </CloseButton>
+      <ImageHolder>
+        <img src={img} alt={'car'} loading="lazy" onError={handleImageError} />
+      </ImageHolder>
+      <TitleHolder>
+        <span>{make} </span>
+        <span>{model}, </span>
+        <span>{year}</span>
+      </TitleHolder>
 
-        <MainInfo>
-          <li>{addressParts[1]}</li>
-          <li>{addressParts[2]}</li>
-          <li>Id: {id}</li>
-          <li>Year: {year}</li>
-          <li>Type: {type}</li>
-          <li>Fuel Consumption: {fuelConsumption}</li>
-          <li>Engine Size{engineSize}</li>
-        </MainInfo>
+      <MainInfo>
+        <li>{addressParts[1]}</li>
+        <li>{addressParts[2]}</li>
+        <li>Id: {id}</li>
+        <li>Year: {year}</li>
+        <li>Type: {type}</li>
+        <li>Fuel Consumption: {fuelConsumption}</li>
+        <li>Engine Size{engineSize}</li>
+      </MainInfo>
 
-        <Description>{description}</Description>
+      <Description>{description}</Description>
 
-        <DescribeTitle>Accessories and functionalities: </DescribeTitle>
-        <AccessoriesInfo>
-          {accessories.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-          {functionalities.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </AccessoriesInfo>
+      <DescribeTitle>Accessories and functionalities: </DescribeTitle>
+      <AccessoriesInfo>
+        {accessories.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+        {functionalities.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </AccessoriesInfo>
 
-        <DescribeTitle>Rental Conditions: </DescribeTitle>
+      <DescribeTitle>Rental Conditions: </DescribeTitle>
 
-        <RentalConditions>
-          {conditionsArray.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-          {
-            <li>
-              Mileage: <span>{uiMileage}</span>
-            </li>
-          }
-          {
-            <li>
-              Price: <span>{priseFormat}$</span>
-            </li>
-          }
-        </RentalConditions>
+      <RentalConditions>
+        {conditionsArray.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+        {
+          <li>
+            Mileage: <span>{uiMileage}</span>
+          </li>
+        }
+        {
+          <li>
+            Price: <span>{priseFormat}$</span>
+          </li>
+        }
+      </RentalConditions>
 
-        <div>
-          <RentalButton href="tel:+380730000000" type="button">
-            Rental car
-          </RentalButton>
-        </div>
-      </ModalContent>
-    </ModalOverlay>
+      <div>
+        <RentalButton href="tel:+380730000000" type="button">
+          Rental car
+        </RentalButton>
+      </div>
+    </Modal>
+    // </ModalOverlay>
   );
 };
 

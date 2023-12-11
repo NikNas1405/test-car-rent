@@ -24,7 +24,7 @@ export const HeaderContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 20px;
 
   border: 2px solid tomato; // РППППППППППППППППППППППППППППППППППППППППППП
 
@@ -74,7 +74,7 @@ export const NavLinkStyled = styled(NavLink)`
 
 export const Container = styled.main`
   max-width: 1144px;
-  padding: 100px 10px;
+  padding: 100px 40px;
   margin: 0 auto;
   background-color: #ffffff;
 
