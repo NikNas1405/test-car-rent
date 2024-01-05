@@ -19,6 +19,14 @@ export const CloseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const ContentColumn = styled.div`

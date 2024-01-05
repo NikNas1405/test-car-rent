@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import Modal from 'react-modal';
 
-import { formatNumber, formatPriceSelect } from '../../utils/helpersFunctions';
+import { formatPriceSelect } from '../../utils/helpersFunctions';
 import {
   CloseButton,
   RentalButton,
@@ -15,6 +14,8 @@ import {
   RentalConditions,
   ModalContent,
 } from './ModalComponent.styled';
+
+import closeSvg from '../../utils/images/x.svg';
 
 Modal.setAppElement('#root');
 
@@ -42,7 +43,8 @@ export const ModalComponent = ({
     functionalities,
   } = car;
   const addressParts = address?.split(', ');
-  const uiMileage = formatNumber(mileage);
+
+  const uiMileage = mileage.toLocaleString();
 
   const conditionsArray = rentalConditions.split('\n');
   const firstElementParts = conditionsArray[0].split(':');
@@ -100,7 +102,7 @@ export const ModalComponent = ({
     >
       <ModalContent>
         <CloseButton onClick={closeModal}>
-          <FaTimes />
+          <img src={closeSvg} alt="car" />
         </CloseButton>
         <ImageHolder>
           <img

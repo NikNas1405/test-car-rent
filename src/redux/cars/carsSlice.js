@@ -18,7 +18,8 @@ const handleFetchCarsFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.isFilter = false;
-  state.adverts.push(...action.payload);
+  state.page = action.payload.page;
+  state.adverts = [...state.adverts, ...action.payload];
 };
 
 const handleFetchFilteredCarsFulfilled = (state, action) => {
@@ -39,6 +40,12 @@ const carsSlice = createSlice({
       state.favorites = state.favorites.filter(
         car => car.id !== action.payload
       );
+    },
+    clearCars: state => {
+      state.adverts = [];
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
     },
   },
   extraReducers: builder =>
@@ -61,5 +68,5 @@ export const carsReducer = carsSlice.reducer;
 
 export const persistedCarsReducer = persistReducer(persistConfig, carsReducer);
 
-export const { addToFavorites, removeFromFavorites, clearCarsData } =
+export const { addToFavorites, removeFromFavorites, clearCars, setPage } =
   carsSlice.actions;

@@ -193,8 +193,6 @@ export const carStyles = {
   }),
 };
 
-
-
 export const priceStyles = {
   singleValue: styles => ({
     ...styles,

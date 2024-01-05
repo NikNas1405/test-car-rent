@@ -11,24 +11,11 @@ export const fetchAllCars = createAsyncThunk(
   'advert/fetchAllCars',
   async (page, thunkAPI) => {
     const options = new URLSearchParams({
-      page: page,
+      page,
       ...defaultParams,
     });
     try {
       const response = await axios.get(`${BASE_URL}/advert/?${options}`);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchAllCarsForFiltersForm = createAsyncThunk(
-  'advert/fetchAllCarsForFiltersForm',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(`${BASE_URL}/advert/`);
       return response.data;
     } catch (error) {
       console.log(error);
