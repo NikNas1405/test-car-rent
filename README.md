@@ -13,12 +13,13 @@ that you have added to your favorites.
 [Create React App](https://github.com/facebook/create-react-app).
 
 # Technologies used:
+Frontend: 
+- HTML/CSS,
+- JS,
+- React,
+- Redux,
+- Persist,
+- Axios.
 
-| Frontend   | Backend |
-| ---------- | ------- |
-| HTML/CSS   | MockAPI |
-| React      |         |
-| Redux      |         |
-| Persist    |         |
-| Pagination |         |
-| Axios      |         |
+Backend: 
+- MockAPI.
